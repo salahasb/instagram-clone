@@ -10,8 +10,9 @@ html {
 
   
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", "Roboto" sans-serif;
   color: var(--color-grey-700);
+  background-color: var(--color-grey-0);
   font-size: 1.6rem;
   margin: 0;
 }
@@ -24,32 +25,32 @@ body {
 :root{
 
   /* Indigo colors (tints & shades)  */
---color-brand-50:#eef2ff;
---color-brand-100:#e0e7ff;
---color-brand-200:#c7d2fe;
---color-brand-300:#a5b4fc;
---color-brand-400:#818cf8;
---color-brand-500:#6366f1;
---color-brand-600:#4f46e5;
---color-brand-700:#4338ca;
---color-brand-800:#3730a3;
---color-brand-900:#312e81;
---color-brand-950:#1e1b4b;
- 
-/* borders */
---border-radius-tiny: 3px;
---border-radius-sm: 5px;
---border-radius-md: 7px;
---border-radius-lg: 9px;
+  --color-brand-50:#eef2ff;
+  --color-brand-100:#e0e7ff;
+  --color-brand-200:#c7d2fe;
+  --color-brand-300:#a5b4fc;
+  --color-brand-400:#4CB5F9;
+  --color-brand-500:#0095F6;
+  --color-brand-600:#4f46e5;
+  --color-brand-700:#4338ca;
+  --color-brand-800:#3730a3;
+  --color-brand-900:#312e81;
+  --color-brand-950:#1e1b4b;
+   
+  /* borders */
+  --border-radius-tiny: 3px;
+  --border-radius-sm: 5px;
+  --border-radius-md: 7px;
+  --border-radius-lg: 9px;
 
---border-main: solid 1px  var(--color-grey-200);
+/* --border-main: solid 1px  var(--color-grey-200);
 
 /* Transitions & Animations */
---button-transition: color 0.3s, background-color 0.3s;
+/* --button-transition: color 0.3s, background-color 0.3s; */  
 
 
 /* Light Mode */
-&,&.light-mode{
+&,&.light{
   
   /* pallet colors */
   --color-blue-100: #e0f2fe;
@@ -91,7 +92,7 @@ body {
 
     
 /* FOR DARK MODE */
-&.dark-mode {
+&.dark {
   --color-grey-0: #18212f;
   --color-grey-50: #111827;
   --color-grey-100: #1f2937;
