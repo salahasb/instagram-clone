@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import LoginSignup from "../features/authentication/LoginSignup";
+import LoginSignupBox from "../features/authentication/LoginPage/LoginSignupBox";
 import Footer from "../components/Footer";
 
 const Container = styled.div`
 	max-width: 780px;
-	padding: 0 3rem;
 	margin: 0 auto;
 `;
 
@@ -21,13 +20,14 @@ const ContentBox = styled.div`
 	}
 `;
 
-const LoginLayout = styled.div`
+const Wrapper = styled.div`
 	flex: 1;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 3rem;
 
-	& div:first-child {
+	& > div:first-child {
 		display: none;
 	}
 
@@ -36,23 +36,23 @@ const LoginLayout = styled.div`
 	}
 
 	@media (min-width: 54.68em) {
-		& div:first-child {
+		& > div:first-child {
 			display: block;
 		}
 	}
 `;
 
-function Login() {
+function LoginPage() {
 	return (
-		<Container>
+		<Container className="">
 			<ContentBox>
 				<div>
-					<LoginLayout>
+					<Wrapper>
 						<div>
 							<img src="/insta-app-screenshot.png" alt="" />
 						</div>
-						<LoginSignup />
-					</LoginLayout>
+						<LoginSignupBox />
+					</Wrapper>
 				</div>
 
 				<Footer />
@@ -61,4 +61,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default LoginPage;

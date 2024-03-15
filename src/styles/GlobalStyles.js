@@ -9,13 +9,7 @@ html {
 }
 
   
-body {
-  font-family: "Segoe UI", "Roboto" sans-serif;
-  color: var(--color-grey-700);
-  background-color: var(--color-grey-0);
-  font-size: 1.6rem;
-  margin: 0;
-}
+ 
 
  
  
