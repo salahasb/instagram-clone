@@ -1,49 +1,50 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { forwardRef, useState } from "react";
 
-// const Form = styled.form`
-// 	display: flex;
-// 	flex-direction: column;
-// 	width: 100%;
-// 	gap: 0.7rem;
-
-// 	& > button {
-// 		margin-top: 0.8rem;
-// 	}
-// `;
-function Form({ children }) {
-	return <form className="form">{children}</form>;
+function Form({ children, ...props }) {
+	return (
+		<form className="form" {...props}>
+			{children}
+		</form>
+	);
 }
 
-function Input({ className, placeholder, ...props }) {
-	const [showPassword, setShowPassword] = useState(false);
+const Input = forwardRef(({ label, type, ...props }, ref) => {
+	//  this state for input of type password only! (for showing pw)
+	const [inputType, setInputType] = useState(type);
 
+	//  styles
 	const labelStyles =
 		"absolute top-4 left-0 -translate-y-1/2 cursor-text px-[0.7rem] select-none text-gray-500 dark:text-gray-500 pointer-events-none text-[1rem] peer-placeholder-shown:text-xl transition-[font-size,top] peer-placeholder-shown:top-1/2";
 
 	return (
 		<div className="relative">
-			<input {...props} placeholder="" className={`${className} input peer`} />
+			{/* empty placeholder for it's trick (animated placeholder) */}
+			<input
+				type={inputType || ""}
+				{...props}
+				ref={ref}
+				placeholder=""
+				className={`input peer`}
+			/>
 
-			<label className={labelStyles}>{placeholder}</label>
+			<label className={labelStyles}>{label}</label>
+
+			{type === "password" && (
+				<span
+					className="absolute right-4 top-1/2 -translate-y-1/2 text-[1.3rem] font-medium inline peer-placeholder-shown:hidden cursor-pointer"
+					onClick={() =>
+						setInputType((i) => (i === "password" ? "text" : "password"))
+					}
+				>
+					{inputType === "text" ? "Hide" : "Show"}
+				</span>
+			)}
 		</div>
 	);
-}
-
-// const Input = styled.input`
-// 	background-color: var(--color-grey-50);
-// 	border: 1px solid var(--color-grey-300);
-// 	outline: 0;
-// 	padding: 0.5rem 0.7rem;
-// 	border-radius: var(--border-radius-sm);
-
-// 	&:focus {
-// 		border: 1px solid var(--color-grey-400);
-// 	}
-
-// 	&::placeholder {
-// 	}
-// `;
+});
 
 Form.Input = Input;
+
+Input.displayName = "Input";
+
 export default Form;

@@ -4,9 +4,7 @@ const GlobalStyles = createGlobalStyle`
  /***************** Normalization *****************************/
 
   
-html {
-  font-size: 62.5%;
-}
+
 
   
  

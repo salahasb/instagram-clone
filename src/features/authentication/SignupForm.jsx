@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import Button from "../../../components/Button";
-import Form from "../../../components/Form";
+import Button from "../../components/Button";
+import Form from "../../components/Form";
 
 function SignupForm() {
 	const { register, handleSubmit } = useForm();

@@ -1,64 +1,26 @@
-import styled from "styled-components";
-import LoginSignupBox from "../features/authentication/LoginPage/LoginSignupBox";
+import LoginSignupBox from "../features/authentication/LoginSignupBox";
 import Footer from "../components/Footer";
 
-const Container = styled.div`
-	max-width: 780px;
-	margin: 0 auto;
-`;
-
-const ContentBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-
-	& > div {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		width: 100%;
-	}
-`;
-
-const Wrapper = styled.div`
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 3rem;
-
-	& > div:first-child {
-		display: none;
-	}
-
-	& > * {
-		flex: 1 1 50%;
-	}
-
-	@media (min-width: 54.68em) {
-		& > div:first-child {
-			display: block;
-		}
-	}
-`;
-
 function LoginPage() {
-	return (
-		<Container className="">
-			<ContentBox>
-				<div>
-					<Wrapper>
-						<div>
-							<img src="/insta-app-screenshot.png" alt="" />
-						</div>
-						<LoginSignupBox />
-					</Wrapper>
-				</div>
+  return (
+    <div>
+      <div className="flex h-screen flex-col [&>div]:flex [&>div]:w-full [&>div]:flex-1 [&>div]:items-center">
+        <div>
+          <div className="mx-auto flex max-w-[75rem] flex-1 basis-1/2 items-center justify-center gap-[3rem] *:flex-1">
+            <div className="54.68:block hidden">
+              <img
+                src="/insta-app-screenshot.png"
+                alt="instagram app screenshot"
+              />
+            </div>
+            <LoginSignupBox />
+          </div>
+        </div>
 
-				<Footer />
-			</ContentBox>
-		</Container>
-	);
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
 export default LoginPage;
