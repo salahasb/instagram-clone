@@ -1,12 +1,10 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
-import useLogin from './useLogin';
+import Spinner from '../../components/Spinner';
+// import { promise } from '../../services/appwrite';
 
-function LoginForm() {
-  // react query hooks
-  const { isLoading, error, login } = useLogin();
-
+function LoginForm({ mutation: { isLoading, mutate: login } }) {
   // react form hooks
   const {
     register,
@@ -15,17 +13,27 @@ function LoginForm() {
   } = useForm();
 
   // event handlers
-  function onSuccess(data) {
+  async function onSuccess({ email, password }) {
+    // Array.from({length:100000000})
     // console.log(data);
+    // login({ email, password });
+    try {
+      // const res = await promise;
+      //
+      // console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
   }
-
   return (
     <Form onSubmit={handleSubmit(onSuccess)}>
       <Form.Input
         label="Email"
-        defaultValue="  salahakon1998@gmail.com"
+        defaultValue="salahakon1998@gmail.com"
         {...register('email', {
           required: true,
+          // eslint-disable-next-line no-useless-escape
+          pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
         })}
       />
 
@@ -39,8 +47,12 @@ function LoginForm() {
         })}
       />
 
-      <Button className="mt-4 disabled:bg-brand-400" disabled={!isValid}>
-        Log in
+      <Button
+        className="mt-4 disabled:bg-brand-400"
+        disabled={!isValid || isLoading}
+      >
+        {isLoading ? <Spinner /> : 'Log in'}
+        {/* <Spinner /> */}
       </Button>
     </Form>
   );

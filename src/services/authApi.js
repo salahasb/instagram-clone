@@ -1,58 +1,71 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
-import { app, db } from './firebase';
-import { doc, addDoc, collection, setDoc } from 'firebase/firestore';
+import { ID, Query } from 'appwrite';
+import { account, config, databases } from './appwrite.config';
+import { createUser } from './usersApi';
 
-// firebase auth service ref
-const auth = getAuth(app);
-
-// data references
-const usersCol = collection(db, 'users');
-
-export async function signUp(body) {
+export async function signup({ fullName, email, password, username }) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      'salahakon1998@gmail.com',
-      '123456',
+    // create new account in auth service
+    const userRes = await account.create(
+      ID.unique(),
+      email,
+      password,
+      fullName,
     );
 
-    const user = userCredential.user;
-    console.log(user);
-
-    // create user in the firestore
-    setDoc(doc(usersCol, user.uid), {
-      name: 'salah',
-      age: '20',
-      avatar: '',
-      bio: 'New user here',
-      gender: 'male',
+    // register the new account in users collection
+    const user = await createUser({
+      accountId: userRes.$id,
+      fullName,
+      username,
+      email,
     });
+
+    // login the account
+    await login(email, password);
 
     return user;
   } catch (error) {
     console.error(error);
-    const { errorCode, errorMessage } = error;
 
-    throw new Error(`something went wrong with signing up`);
+    throw error;
   }
 }
 
-export async function login({ email, password }) {
+export async function login(email, password) {
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-    console.log(userCredential.user);
+    const res = await account.createEmailSession(email, password);
   } catch (error) {
     console.error(error);
-    const { errorCode, errorMessage } = error;
+    throw error;
+  }
+}
 
-    throw new Error(`something went wrong with signing up`);
+export async function getUserByEmail(email) {
+  try {
+    const { total } = await databases.listDocuments(
+      config.databasesId,
+      config.usersCollectionId,
+      [Query.equal('email', [email])],
+    );
+
+    return total;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserByUsername(username) {
+  try {
+    const { total } = await databases.listDocuments(
+      config.databasesId,
+      config.usersCollectionId,
+      [Query.equal('username', [username])],
+    );
+
+    return total;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 }

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import LoginSignup from './LoginSignup';
-import useLogin from './useLogin';
 
 function LoginSignupToggle({ action, setAction }) {
   // events handlers
@@ -16,7 +15,8 @@ function LoginSignupToggle({ action, setAction }) {
         </p>{' '}
         <button
           onClick={handleToggle}
-          className="font-semibold text-blue-500 dark:text-blue-400"
+          className="font-semibold text-blue-500 outline-none focus:ring-2
+          dark:text-blue-400"
         >
           {action === 'login' ? 'Sign up' : 'Log in'}
         </button>
@@ -42,15 +42,15 @@ function GetApp() {
 }
 
 function LoginSignupBox() {
-  const { isLoading, error, login } = useLogin();
+  // to show either login or signup component in <LoginSignup/>
   const [action, setAction] = useState('login');
 
   return (
-    <div className="flex max-w-[35rem] flex-col gap-4 ">
+    <div className="flex max-w-[35rem] flex-col gap-4">
       <LoginSignup action={action} />
 
       <LoginSignupToggle action={action} setAction={setAction} />
-      {error && <p>{error}</p>}
+
       <GetApp />
     </div>
   );
