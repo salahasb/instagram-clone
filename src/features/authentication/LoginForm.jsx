@@ -13,18 +13,10 @@ function LoginForm({ mutation: { isLoading, mutate: login } }) {
   } = useForm();
 
   // event handlers
-  async function onSuccess({ email, password }) {
-    // Array.from({length:100000000})
-    // console.log(data);
-    // login({ email, password });
-    try {
-      // const res = await promise;
-      //
-      // console.log(res);
-    } catch (error) {
-      console.error(error);
-    }
+  function onSuccess(data) {
+    login(data);
   }
+
   return (
     <Form onSubmit={handleSubmit(onSuccess)}>
       <Form.Input
@@ -40,7 +32,7 @@ function LoginForm({ mutation: { isLoading, mutate: login } }) {
       <Form.Input
         type="password"
         label="Password"
-        defaultValue="123456"
+        defaultValue="123456789"
         {...register('password', {
           required: true,
           minLength: 6,

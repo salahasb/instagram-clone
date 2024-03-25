@@ -1,9 +1,8 @@
 /* eslint-disable no-useless-escape */
 import { useForm } from 'react-hook-form';
-
 import Button from '../../components/Button';
 import Form from '../../components/Form';
-import { getUserByEmail, getUserByUsername } from '../../services/authApi';
+import { getUserByEmail, getUserByUsername } from '../../services/usersApi';
 import { useLogin, useSignup } from './authQueries&Mutations';
 
 function SignupForm() {

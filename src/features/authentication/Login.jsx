@@ -8,20 +8,21 @@ function Login() {
   // react query hooks
   const mutation = useLogin();
   // console.log(mutation);
-  return;
-  <>
-    <LoginForm mutation={mutation} />
+  return (
+    <>
+      <LoginForm mutation={mutation} />
 
-    <Or />
+      <Or />
 
-    <LoginWithGoogle />
+      <LoginWithGoogle />
 
-    {mutation.isError && (
-      <p className="mt-5 text-2xl text-red-500 ">{mutation.error.message}</p>
-    )}
+      {mutation.isError && (
+        <p className="mt-5 text-2xl text-red-500 ">{mutation.error.message}</p>
+      )}
 
-    <RecoverPassword />
-  </>;
+      <RecoverPassword />
+    </>
+  );
 }
 
 export default Login;

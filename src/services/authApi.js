@@ -33,37 +33,29 @@ export async function signup({ fullName, email, password, username }) {
 
 export async function login(email, password) {
   try {
-    const res = await account.createEmailSession(email, password);
+    await account.createEmailSession(email, password);
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
 
-export async function getUserByEmail(email) {
+export async function logout() {
   try {
-    const { total } = await databases.listDocuments(
-      config.databasesId,
-      config.usersCollectionId,
-      [Query.equal('email', [email])],
-    );
+    const res = await account.deleteSession('current');
 
-    return total;
+    return res;
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
 
-export async function getUserByUsername(username) {
+export async function getLoggedInUser() {
   try {
-    const { total } = await databases.listDocuments(
-      config.databasesId,
-      config.usersCollectionId,
-      [Query.equal('username', [username])],
-    );
-
-    return total;
+    const res = await account.get();
+    console.log(res);
+    return res;
   } catch (error) {
     console.log(error);
     throw error;

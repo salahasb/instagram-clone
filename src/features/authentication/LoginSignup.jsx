@@ -18,11 +18,11 @@ function Logo() {
   );
 }
 
-function LoginSignup({ action }) {
+function LoginSignup({ mode }) {
   return (
     <div className="flex flex-col items-center border-gray-300 px-16 pb-8 pt-20 xs:border">
       <Logo />
-      {action === 'login' ? <Login /> : <SignUp />}
+      {mode === 'login' ? <Login /> : <SignUp />}
     </div>
   );
 }
