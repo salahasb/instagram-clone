@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 import { getUserByEmail, getUserByUsername } from '../../services/usersApi';
-import { useLogin, useSignup } from './authQueries&Mutations';
+import { useSignup } from './authQueries&Mutations';
 
 function SignupForm() {
   /*************** react hook form *****************/
@@ -17,33 +17,22 @@ function SignupForm() {
   } = useForm({ mode: 'onChange' });
 
   /*************** react query *****************/
-  const { isSigningIn, signupUser, error } = useSignup();
-  //   const { isLoggingIn, loginUser } = useLogin();
-
-  //   const isWorking = isSigningIn || isLoggingIn;
+  const { isLoading, signupUser, error } = useSignup();
 
   /*************** event handlers *****************/
-  async function onBlurEmail() {
-    const email = getValues('email');
+  async function handleOnBlur(field) {
+    const value = getValues(field);
 
-    if (!email) return;
+    if (!value) return;
 
-    const isExist = await getUserByEmail(email);
+    const { total: isExist } =
+      field === 'username'
+        ? await getUserByUsername(value)
+        : await getUserByEmail(value);
 
-    if (isExist) setError('email');
+    if (isExist) setError(field);
   }
 
-  async function onBlurUsername() {
-    const username = getValues('username');
-
-    if (!username) return;
-
-    const isExist = await getUserByUsername(username);
-
-    if (isExist) setError('username');
-  }
-
-  // on submit form
   function onSubmit(data) {
     // signup user
     signupUser(data, {
@@ -54,17 +43,14 @@ function SignupForm() {
     });
   }
 
-  console.log(error);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Input
         label="Email"
         {...register('email', {
           required: true,
-
           pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-
-          onBlur: onBlurEmail,
+          onBlur: () => handleOnBlur('email'),
         })}
         validation={
           dirtyFields.email ? (errors?.email ? 'error' : 'success') : ''
@@ -81,8 +67,7 @@ function SignupForm() {
         {...register('username', {
           required: true,
           minLength: 5,
-
-          onBlur: onBlurUsername,
+          onBlur: () => handleOnBlur('username'),
         })}
         validation={
           dirtyFields.username ? (errors?.username ? 'error' : 'success') : ''
@@ -100,7 +85,7 @@ function SignupForm() {
 
       <Button
         className="mb-10 mt-5 disabled:bg-brand-400"
-        disabled={!isValid || Object.keys(errors).length !== 0 || isSigningIn}
+        disabled={!isValid || Object.keys(errors).length !== 0 || isLoading}
       >
         Sign up
       </Button>

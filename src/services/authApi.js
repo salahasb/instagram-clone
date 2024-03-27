@@ -1,6 +1,6 @@
 import { ID, Query } from 'appwrite';
 import { account, config, databases } from './appwrite.config';
-import { createUser } from './usersApi';
+import { createUser, getUserByEmail } from './usersApi';
 
 export async function signup({ fullName, email, password, username }) {
   try {
@@ -53,9 +53,11 @@ export async function logout() {
 
 export async function getLoggedInUser() {
   try {
-    const res = await account.get();
-    console.log(res);
-    return res;
+    const { email } = await account.get();
+
+    const { documents } = await getUserByEmail(email);
+
+    return documents[0];
   } catch (error) {
     console.log(error);
     throw error;

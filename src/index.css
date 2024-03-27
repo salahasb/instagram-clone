@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white text-black dark:bg-black dark:text-gray-50;
+    @apply 425:mt-0 mt-[45px] bg-white text-black dark:bg-gray-800 dark:text-gray-50;
   }
 }
 
@@ -19,13 +19,13 @@
 
   .input {
     @apply h-[3.6rem] w-full rounded-md border border-gray-300 bg-gray-50 px-[0.7rem] 
-		py-2 pt-6 text-[1.2rem] outline-none placeholder-shown:pt-2 focus:border-gray-400  dark:bg-gray-900;
+		py-2 pt-6 text-[1.2rem] outline-none placeholder-shown:pt-2 focus:border-gray-400 dark:border-gray-500 dark:bg-gray-800;
   }
 
   /* .or::after,
   .or::before { */
   .or:is(::after, ::before) {
-    content: "";
+    content: '';
     display: block;
     height: 1px;
     width: 40%;

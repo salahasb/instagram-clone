@@ -4,6 +4,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AuthPage from './pages/AuthPage';
 import AppLayout from './components/AppLayout';
 import ProtectedRoute from './features/authentication/ProtectedRoute';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
 
 // React Router
 
@@ -20,8 +22,8 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { index: true, element: <div>home</div> },
-      { path: '/:id', element: <div>profile</div> },
+      { index: true, element: <HomePage /> },
+      { path: '/:id', element: <ProfilePage /> },
     ],
   },
 ]);

@@ -22,13 +22,13 @@ export async function createUser(user) {
 
 export async function getUserByEmail(email) {
   try {
-    const { total } = await databases.listDocuments(
+    const res = await databases.listDocuments(
       config.databasesId,
       config.usersCollectionId,
       [Query.equal('email', [email])],
     );
 
-    return total;
+    return res;
   } catch (error) {
     console.log(error);
     throw error;
@@ -37,13 +37,13 @@ export async function getUserByEmail(email) {
 
 export async function getUserByUsername(username) {
   try {
-    const { total } = await databases.listDocuments(
+    const res = await databases.listDocuments(
       config.databasesId,
       config.usersCollectionId,
       [Query.equal('username', [username])],
     );
 
-    return total;
+    return res;
   } catch (error) {
     console.log(error);
     throw error;

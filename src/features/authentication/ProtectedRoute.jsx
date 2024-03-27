@@ -1,25 +1,23 @@
 import { useEffect } from 'react';
 import { useLoggedInUser } from './authQueries&Mutations';
 import { useNavigate } from 'react-router-dom';
+import LoadingPage from '../../components/LoadingPage';
 
 function ProtectedRoute({ children }) {
-  const { user, isLoading, error } = useLoggedInUser();
+  const { isLoading, error, remove } = useLoggedInUser();
 
   const navigate = useNavigate();
 
-  // console.log(user);
-  // console.log(error);
-
   useEffect(() => {
-    console.log('protected route effect');
+    if (error) {
+      remove();
+      navigate('/auth');
+    }
+  }, [error, remove, navigate]);
 
-    if (!user && !isLoading) navigate('/auth');
-  }, [user, isLoading, navigate]);
+  if (isLoading) return <LoadingPage />;
 
-  if (isLoading)
-    return <div className="text-8xl text-red-500">Loading......</div>;
-
-  if (!user) return;
+  if (error) return;
 
   return children;
 }

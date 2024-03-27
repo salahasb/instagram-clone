@@ -1,19 +1,23 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getLoggedInUser, login, logout, signup } from '../../services/authApi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getUserByEmail } from '../../services/usersApi';
 
-export default function useLoggedInUser() {
+export function useLoggedInUser() {
+  const { pathname } = useLocation();
+
   const {
     data: user,
     isLoading,
     error,
+    remove,
   } = useQuery({
     queryKey: ['user'],
     queryFn: getLoggedInUser,
+    refetchOnWindowFocus: () => pathname !== '/auth',
   });
 
-  return { user, isLoading, error };
+  return { user, isLoading, error, remove };
 }
 
 export function useLogin() {
@@ -46,7 +50,6 @@ export function useSignup() {
   } = useMutation({
     mutationFn: signup,
     onSuccess: (data) => {
-      console.log(data);
       // plan out what to do
       navigate('/');
     },

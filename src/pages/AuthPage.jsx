@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLoggedInUser } from '../features/authentication/authQueries&Mutations';
+import LoadingPage from '../components/LoadingPage';
 
 function AuthPage() {
   const { user, isLoading } = useLoggedInUser();
@@ -10,13 +11,10 @@ function AuthPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Auth page effect');
-
     if (user) navigate('/');
   }, [user, isLoading, navigate]);
 
-  if (isLoading)
-    return <div className="text-8xl text-blue-500">Loading......</div>;
+  if (isLoading) return <LoadingPage />;
 
   if (user) return;
 

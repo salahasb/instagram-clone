@@ -16,7 +16,7 @@ const Input = forwardRef(
 
     //  styles
     const labelStyles =
-      'absolute top-4 left-0 -translate-y-1/2 cursor-text px-[0.7rem] select-none text-gray-500 dark:text-gray-500 pointer-events-none text-[1rem] peer-placeholder-shown:text-xl transition-[font-size,top] peer-placeholder-shown:top-1/2';
+      'absolute top-4 left-0 -translate-y-1/2 cursor-text px-[0.7rem] select-none text-gray-500 dark:text-gray-200 pointer-events-none text-[1rem] peer-placeholder-shown:text-xl transition-[font-size,top] peer-placeholder-shown:top-1/2';
 
     return (
       <div className="relative">

@@ -21,7 +21,7 @@ function LoginForm({ mutation: { isLoading, mutate: login } }) {
     <Form onSubmit={handleSubmit(onSuccess)}>
       <Form.Input
         label="Email"
-        defaultValue="salahakon1998@gmail.com"
+        defaultValue="example@app.com"
         {...register('email', {
           required: true,
           // eslint-disable-next-line no-useless-escape
