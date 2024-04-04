@@ -8,7 +8,7 @@ function LoginSignupToggle({ mode, setMode }) {
   };
 
   return (
-    <div className="border-gray-300 py-8 text-center text-[1.4rem] text-black xs:border dark:border-gray-600 dark:text-white">
+    <div className="450:border border-gray-300 py-8 text-center text-[1.4rem] text-black dark:border-gray-600 dark:text-white">
       <div>
         <p className="inline">
           {mode === 'login' ? "Don't have an account?" : 'Have an account?'}

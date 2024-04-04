@@ -20,7 +20,7 @@ function Logo() {
 
 function LoginSignup({ mode }) {
   return (
-    <div className="flex flex-col items-center border-gray-300 px-16 pb-8 pt-20 xs:border dark:border-gray-600">
+    <div className="450:border flex flex-col items-center border-gray-300 px-16 pb-8 pt-20 dark:border-gray-600">
       <Logo />
       {mode === 'login' ? <Login /> : <SignUp />}
     </div>

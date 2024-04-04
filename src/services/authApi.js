@@ -1,6 +1,40 @@
 import { ID, Query } from 'appwrite';
 import { account, config, databases } from './appwrite.config';
-import { createUser, getUserByEmail } from './usersApi';
+import { createUser } from './userApi';
+
+// for Checking if the email already exist (signup form)
+export async function checkEmail(email) {
+  try {
+    const res = await databases.listDocuments(
+      config.databasesId,
+      config.usersCollectionId,
+      [Query.equal('email', [email])],
+    );
+
+    return res.documents[0];
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// for Checking if the username already exist (signup form)
+export async function checkUsername(username) {
+  try {
+    const res = await databases.listDocuments(
+      config.databasesId,
+      config.usersCollectionId,
+      [Query.equal('username', [username])],
+    );
+
+    // if (!res.total) throw new Error();
+
+    return res.documents[0];
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
 export async function signup({ fullName, email, password, username }) {
   try {
@@ -55,11 +89,13 @@ export async function getLoggedInUser() {
   try {
     const { email } = await account.get();
 
-    const { documents } = await getUserByEmail(email);
+    // get the logged user info
+    const user = await checkEmail(email);
 
-    return documents[0];
+    return user;
   } catch (error) {
     console.log(error);
-    throw error;
+    // throw new Error(error.message);
+    throw new Error(error.message);
   }
 }

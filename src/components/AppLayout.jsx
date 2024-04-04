@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import NavBar from './NavBar';
+import NavBar from './navigation/NavBar';
 
 function AppLayout() {
   return (
-    <div className="425:flex-row flex h-dvh flex-col">
-      <main className="425:order-2 flex-grow">
+    <div className="max-736:flex-col flex h-dvh">
+      <main className="736:order-1 736:px-10 grow overflow-auto">
         <Outlet />
       </main>
 

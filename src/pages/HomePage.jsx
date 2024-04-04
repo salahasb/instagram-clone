@@ -5,17 +5,21 @@ import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
-    <AppHeader>
-      <Link to="/">
-        <InstaTextLogo />
-      </Link>
-      <Link to={'notifications'} className="ml-auto">
-        <FaRegHeart size={23} />
-      </Link>
-      <Link to={''}>
-        <img src="icons/instagram-share-icon.svg" className="w-9" alt="" />
-      </Link>
-    </AppHeader>
+    <>
+      <AppHeader>
+        <Link to="/">
+          <InstaTextLogo />
+        </Link>
+        <Link to={'notifications'} className="ml-auto">
+          <FaRegHeart size={23} />
+        </Link>
+        <Link to={''}>
+          <img src="icons/instagram-share-icon.svg" className="w-9" alt="" />
+        </Link>
+      </AppHeader>
+
+      <p className="text-5xl">Home </p>
+    </>
   );
 }
 

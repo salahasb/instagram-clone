@@ -6,6 +6,7 @@ import AppLayout from './components/AppLayout';
 import ProtectedRoute from './features/authentication/ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
+import ErrorPage from './components/ErrorPage';
 
 // React Router
 
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     path: '/auth',
     element: <AuthPage />,
   },
+
   {
     path: '/',
     element: (
@@ -23,8 +25,12 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <HomePage /> },
-      { path: '/:id', element: <ProfilePage /> },
+      { path: ':username', element: <ProfilePage /> },
     ],
+  },
+  {
+    path: '/error',
+    element: <ErrorPage />,
   },
 ]);
 

@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
-import { getUserByEmail, getUserByUsername } from '../../services/usersApi';
+import { checkEmail, checkUsername } from '../../services/authApi';
 import { useSignup } from './authQueries&Mutations';
 
 function SignupForm() {
@@ -25,11 +25,13 @@ function SignupForm() {
 
     if (!value) return;
 
-    const { total: isExist } =
+    const user =
       field === 'username'
-        ? await getUserByUsername(value)
-        : await getUserByEmail(value);
+        ? await checkUsername(value)
+        : await checkEmail(value);
 
+    const isExist = Object.keys(user).length !== 0;
+    console.log(user);
     if (isExist) setError(field);
   }
 

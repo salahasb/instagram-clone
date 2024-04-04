@@ -8,14 +8,15 @@ export default {
       colors: {
         brand: { 400: '#4CB5F9', 500: '#0095F6', 600: '#1877f2' },
       },
-      screens: {
-        xs: '28.12em',
-        425: '26.56em',
-        ...defaultTheme.screens,
-        54.68: '54.68em',
-        1263: '78.93em',
-        1919: '119.94em',
-      },
+    },
+    screens: {
+      425: '26.56em',
+      450: '28.12em',
+      // ...defaultTheme.screens,
+      736: '46em',
+      54.68: '54.68em',
+      1263: '78.93em',
+      1919: '119.94em',
     },
 
     container: {

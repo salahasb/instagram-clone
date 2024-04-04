@@ -9,10 +9,14 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (error) {
+    if (!error) return;
+
+    if (error?.message === 'User (role: guests) missing scope (account)') {
       remove();
-      navigate('/auth');
+      return navigate('/auth');
     }
+
+    navigate('/error');
   }, [error, remove, navigate]);
 
   if (isLoading) return <LoadingPage />;

@@ -2,9 +2,11 @@ function Link({ children }) {
   return <span className="cursor-pointer">{children}</span>;
 }
 
-function Footer() {
+function Footer({ className }) {
   return (
-    <footer className="container mb-24 flex flex-col items-center gap-5 text-[1.23rem] text-gray-500 dark:text-gray-400  ">
+    <footer
+      className={`container flex flex-col items-center gap-5 pb-24 pt-16 text-[1.23rem] text-gray-500 dark:text-gray-400 ${className}`}
+    >
       <div className="flex flex-wrap justify-center gap-5 ">
         <Link>Meta</Link>
         <Link>About</Link>

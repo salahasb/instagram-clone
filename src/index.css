@@ -8,7 +8,12 @@
   }
 
   body {
-    @apply 425:mt-0 mt-[45px] bg-white text-black dark:bg-gray-800 dark:text-gray-50;
+    /* 425:mt-0    mt-[45px] */
+    @apply bg-white text-black dark:bg-gray-800 dark:text-gray-50;
+  }
+
+  pre {
+    font-family: inherit;
   }
 }
 

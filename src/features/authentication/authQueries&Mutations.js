@@ -1,7 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getLoggedInUser, login, logout, signup } from '../../services/authApi';
+import {
+  checkEmail,
+  getLoggedInUser,
+  login,
+  logout,
+  signup,
+} from '../../services/authApi';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getUserByEmail } from '../../services/usersApi';
+import { LOGGED_USER } from '../../utils/constants';
 
 export function useLoggedInUser() {
   const { pathname } = useLocation();
@@ -9,15 +15,16 @@ export function useLoggedInUser() {
   const {
     data: user,
     isLoading,
+    isFetching: isFetchingLoggedUser,
     error,
     remove,
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: [LOGGED_USER],
     queryFn: getLoggedInUser,
     refetchOnWindowFocus: () => pathname !== '/auth',
   });
 
-  return { user, isLoading, error, remove };
+  return { user, isLoading, isFetchingLoggedUser, error, remove };
 }
 
 export function useLogin() {
@@ -25,15 +32,14 @@ export function useLogin() {
 
   const mutation = useMutation({
     mutationFn: async ({ email, password }) => {
-      //   try {
       await login(email, password);
 
-      return getUserByEmail(email);
+      return checkEmail(email);
     },
+
     onSuccess: (data) => {
       // 1 store the user info in the client
       navigate('/');
-      // 2 navigate the user to feed page
     },
   });
 
@@ -66,9 +72,10 @@ export function useLogout() {
   const { isLoading, mutate: logoutUser } = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      queryClient.removeQueries(['user']);
+      queryClient.removeQueries([LOGGED_USER]);
       navigate('/auth');
     },
   });
+
   return { isLoading, logoutUser };
 }
