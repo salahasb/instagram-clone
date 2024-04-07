@@ -12,33 +12,37 @@ function ProfileActions() {
   // this what will be rendered if the logged user who is the current profile
   if (isLoggedUser) {
     return (
-      <div className="flex basis-full gap-1 450:gap-3  736:order-1   736:ml-6 736:basis-auto">
-        <Button type="secondary" onClick={() => navigate('/account/edit')}>
-          Edit profile
-        </Button>
-        <Button type="secondary" onClick={() => navigate('')}>
-          View archive
-        </Button>
+      <div className="basis-full 736:order-1 736:ml-6 736:basis-[23rem]">
+        <div className="flex max-w-[27rem] gap-1 *:grow ">
+          <Button type="secondary" onClick={() => navigate('/account/edit')}>
+            Edit profile
+          </Button>
+          <Button type="secondary" onClick={() => navigate('')}>
+            View archive
+          </Button>
+        </div>
       </div>
     );
   }
 
   // otherwise...
   return (
-    <div className="flex basis-full gap-1 450:gap-3  736:order-1   736:ml-6 736:basis-auto">
-      <FollowButton />
+    <div className=" basis-full 736:order-1 736:ml-6 736:basis-[23rem] ">
+      <div className="flex max-w-[27rem] gap-1 736:gap-3 [&>*:not(:last-child)]:grow">
+        <FollowButton />
 
-      <Button
-        type="secondary"
-        className="px-4  450:px-10"
-        onClick={() => navigate('/inbox/')}
-      >
-        Message
-      </Button>
+        <Button
+          type="secondary"
+          className=""
+          onClick={() => navigate('/inbox/')}
+        >
+          Message
+        </Button>
 
-      <Button type="icon">
-        <LuUserPlus className="-mr-1" />
-      </Button>
+        <Button type="icon" className=" ">
+          <LuUserPlus className="-mr-1" />
+        </Button>
+      </div>
     </div>
   );
 }

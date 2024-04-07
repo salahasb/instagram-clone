@@ -25,7 +25,8 @@ function FollowButton() {
     useUpdateUserFollows();
 
   ///////////////////////////////////////// derive state & calc
-  const isLoading = isFetchingUser || isUpdatingUser;
+  //   const isLoading = isFetchingUser || isUpdatingUser;
+  const isLoading = isUpdatingUser;
   // check if the logged user is a follower of the other user
   const isFollower = otherUserFollowers.includes(loggedUserId);
   // check if the logged user is followed by the other user
@@ -79,11 +80,11 @@ function FollowButton() {
     <Button
       type="secondary"
       disabled={isLoading}
-      //   onClick={() => handleFollows('unfollow')}
+      onClick={() => handleFollows('unfollow')}
       className="text-red-500"
     >
-      {/* {isLoading ? <Spinner /> : 'Unfollow'} */}
-      Unfollow
+      {isLoading ? <Spinner /> : 'Unfollow'}
+      {/* Unfollow */}
     </Button>
   );
 }

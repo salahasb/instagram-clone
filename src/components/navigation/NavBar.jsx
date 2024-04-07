@@ -10,94 +10,94 @@ import Uploader from '../../data/Uploader';
 
 function NavBar() {
   return (
-    <nav className=" 736:py-16 736:px-10  736:h-dvh 736:top-0 1263:w-[24.5rem] 1919:w-[33.5rem] 736:w-fit sticky bottom-0 left-0 border border-gray-200 py-4">
-      <ul className="736:flex-col 736:gap-5 736:h-full 1263:items-start flex items-center justify-around">
-        <li className="1263:w-full 736:block order-1 hidden">
-          <Link className="1263:pl-5 inline-block" to="/">
-            <FaInstagram size={25} className="1263:hidden block" />
+    <nav className=" sticky bottom-0  left-0 border border-gray-200 py-4 736:top-0 736:h-dvh 736:w-fit 736:px-10 736:py-16 1263:w-[24.5rem] 1919:w-[33.5rem]">
+      <ul className="flex items-center justify-around 736:h-full 736:flex-col 736:gap-4 1263:items-start">
+        <li className="order-1 hidden 736:block 1263:w-full">
+          <Link className="inline-block 1263:pl-5" to="/">
+            <FaInstagram size={25} className="block 1263:hidden" />
 
-            <InstaTextLogo className="1263:block hidden" />
+            <InstaTextLogo className="hidden 1263:block" />
           </Link>
         </li>
 
-        <li className="1263:w-full 736:mt-10 order-2 text-2xl">
+        <li className="order-2 text-2xl 736:mt-10 1263:w-full">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors ${isActive && 'font-bold'}`
+              `flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100 ${isActive && 'font-bold'}`
             }
           >
             <PiHouseBold size={26} />
-            <div className="1263:block hidden">test</div>
+            <div className="hidden 1263:block">Home</div>
           </NavLink>
         </li>
-        <li className="1263:w-full order-3 text-2xl">
+        <li className="order-3 text-2xl 1263:w-full">
           <button
             to=""
-            className="1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 736:w-full flex rounded-xl transition-colors"
+            className="flex rounded-xl transition-colors  736:w-full 736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
             <LuSearch size={25} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Search</span>
           </button>
         </li>
-        <li className="1263:w-full 736:order-8 order-4 text-2xl">
+        <li className="order-4 text-2xl 736:order-8 1263:w-full">
           <button
             // to=""
-            className="736:w-full 1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors"
+            className="flex rounded-xl transition-colors 736:w-full  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
             <CgAddR size={25} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Create</span>
           </button>
         </li>
-        <li className="1263:w-full order-5 text-2xl">
+        <li className="order-5 text-2xl 1263:w-full">
           <NavLink
             to="reels"
-            className=" 1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors"
+            className=" flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
             <img src="icons/reels-icon.svg" className="w-9" alt="reels icon" />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Reels</span>
           </NavLink>
         </li>
-        <li className="1263:w-full 736:order-3 736:block hidden text-2xl">
+        <li className="hidden text-2xl 736:order-3 736:block 1263:w-full">
           <NavLink
             to="explore"
-            className="1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors"
+            className="flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
             <FaRegCompass size={25} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Explore</span>
           </NavLink>
         </li>
-        <li className="1263:w-full 736:block 736:order-6 hidden   text-2xl">
+        <li className="hidden text-2xl 736:order-6 736:block   1263:w-full">
           <NavLink
             to="direct"
-            className=" 1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors"
+            className=" flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
             <img src="icons/instagram-share-icon.svg" className="w-9" alt="" />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Messages</span>
           </NavLink>
         </li>
-        <li className="1263:w-full 736:block 736:order-7 hidden text-2xl">
-          <button className="736:w-full 1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors">
+        <li className="hidden text-2xl 736:order-7 736:block 1263:w-full">
+          <button className="flex rounded-xl transition-colors 736:w-full  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100">
             <FaRegHeart size={23} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Notifications</span>
           </button>
         </li>
-        <li className="1263:w-full 736:order-9 order-6 text-2xl">
+        <li className="order-6 text-2xl 736:order-9 1263:w-full">
           <NavAvatar />
         </li>
 
         <Uploader />
 
-        <li className="1263:w-full 736:block order-10 mt-auto hidden text-2xl">
-          <button className=" 736:w-full 1263:hover:bg-gray-100 1263:items-center 1263:gap-5  1263:p-5 736:py-5 flex rounded-xl transition-colors">
+        <li className="order-10 mt-auto hidden text-2xl 736:block 1263:w-full">
+          <button className=" flex rounded-xl transition-colors 736:w-full  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100">
             <FaThreads size={25} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Threads</span>
           </button>
         </li>
-        <li className="1263:w-full 736:block order-11 hidden text-2xl">
-          <button className="736:w-full 1263:hover:bg-gray-100 1263:items-center 1263:gap-5 1263:p-5  736:py-5 736:pb-0 flex rounded-xl transition-colors">
+        <li className="order-11 hidden text-2xl 736:block 1263:w-full">
+          <button className="flex rounded-xl transition-colors 736:w-full 736:py-5  736:pb-0 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100">
             <LuMenu size={25} />
-            <span className="1263:inline hidden">test</span>
+            <span className="hidden 1263:inline">Menu</span>
           </button>
         </li>
       </ul>

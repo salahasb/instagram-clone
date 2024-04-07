@@ -1,12 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { LOGGED_USER, USER } from '../../utils/constants';
+import { LOGGED_USER, USER, USERS } from '../../utils/constants';
 import { useParams } from 'react-router-dom';
 import {
   getUserByUsername,
+  getUsers,
   updateUserFollowInfo,
 } from '../../services/userApi';
 import { useEffect } from 'react';
 import { client, config } from '../../services/appwrite.config';
+import { useLoggedInUser } from '../authentication/authQueries&Mutations';
 
 export function useUser() {
   const { username } = useParams();
@@ -23,23 +25,54 @@ export function useUser() {
     staleTime: Infinity,
   });
 
+  // for realtime follow process
   useEffect(() => {
-    // for realtime follow process
+    // subscribe to users channel
     const unsubscribe = client.subscribe(
       `databases.${config.databasesId}.collections.${config.usersCollectionId}.documents`,
       (response) => {
-        // console.log(response);
+        // refetch whenever a change occurred to users
         refetch();
       },
     );
 
     return () => {
       unsubscribe();
-      console.log('unsubscribed by clean-up func');
     };
   }, [refetch]);
 
   return { isFetchingUser, isLoading, error, user, refetch };
+}
+
+export function useMutuals(otherUser, isLoggedUser) {
+  const { user: loggedUser } = useLoggedInUser();
+
+  const enabled = !isLoggedUser && otherUser;
+
+  let mutuals;
+
+  if (enabled) {
+    const loggedUserFollowings = loggedUser.followings;
+    const otherUserFollowers = otherUser.followers;
+
+    mutuals = otherUserFollowers.filter((userId) =>
+      loggedUserFollowings.includes(userId),
+    );
+
+    console.log(mutuals);
+  }
+
+  const {
+    data: mutualUsers,
+    isLoading: isLoadingMutuals,
+    error: mutualsError,
+  } = useQuery({
+    queryFn: () => getUsers(mutuals),
+    queryKey: [USERS],
+    enabled: Boolean(enabled),
+  });
+
+  return { mutualUsers, isLoadingMutuals, mutualsError };
 }
 
 export function useUpdateUserFollows() {

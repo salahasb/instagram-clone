@@ -31,6 +31,8 @@ export async function getUserByUsername(username) {
 
     const [user] = documents;
 
+    if (!user) throw new Error('user not found');
+
     // 2) get the user's posts and follows count
     const { total: postsCount } = await databases.listDocuments(
       config.databasesId,
@@ -65,4 +67,18 @@ export async function updateUserFollowInfo({ loggedUser, otherUser }) {
   } catch (error) {
     throw new Error(error.message);
   }
+}
+
+export async function getUsers(idList) {
+  console.log('query fun execute');
+  if (!idList.length) throw new Error();
+
+  const res = await databases.listDocuments(
+    config.databasesId,
+    config.usersCollectionId,
+    [Query.equal('$id', [...idList])],
+  );
+
+  console.log(res);
+  return res.documents;
 }

@@ -6,18 +6,27 @@ import ProfileSummary from '../features/user/ProfileSummary';
 import ProfileContents from '../features/user/ProfileContents';
 import ProfileHeader from '../features/user/ProfileHeader';
 import ProfileInfoBox from '../features/user/ProfileInfoBox';
-import { useUser } from '../features/user/userQueries&Mutations';
+import { useMutuals, useUser } from '../features/user/userQueries&Mutations';
+import useIsLoggedUser from '../hooks/useIsLoggedUser';
 
 function ProfilePage() {
-  const { isLoading, error, user } = useUser();
-  // const { isLoading: isLoadingPosts } = usePostsCount(user?.$id);
+  const { isLoading: isLoadingUser, error, user: otherUser } = useUser();
 
-  // const error = userError || postsError;
+  const isLoggedUser = useIsLoggedUser();
+
+  const { isLoadingMutuals } = useMutuals(otherUser, isLoggedUser);
 
   const { logoutUser } = useLogout();
 
-  if (isLoading) return <p className="text-5xl">Loading....</p>;
+  // if (isLoggedUser) {
+  //   if (isLoadingUser) return <p className="text-5xl">Loading....</p>;
+  // } else if (isLoadingUser || isLoadingMutuals)
+  //   return <p className="text-5xl">Loading....</p>;
+
   if (error) return <NotFound />;
+
+  if ((isLoggedUser && isLoadingUser) || (!isLoggedUser && isLoadingMutuals))
+    return <p className="text-5xl">Loading....</p>;
 
   return (
     <div className="mx-auto flex h-full max-w-[92rem] flex-col">
