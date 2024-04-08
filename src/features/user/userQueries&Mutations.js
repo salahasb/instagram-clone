@@ -58,8 +58,6 @@ export function useMutuals(otherUser, isLoggedUser) {
     mutuals = otherUserFollowers.filter((userId) =>
       loggedUserFollowings.includes(userId),
     );
-
-    console.log(mutuals);
   }
 
   const {
