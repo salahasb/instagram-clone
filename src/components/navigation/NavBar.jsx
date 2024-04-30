@@ -7,6 +7,8 @@ import { Link, NavLink } from 'react-router-dom';
 import InstaTextLogo from '../InstaTextLogo';
 import NavAvatar from './NavAvatar';
 import Uploader from '../../data/Uploader';
+import ReelsIcon from '../ReelsIcon';
+import ShareIcon from '../ShareIcon';
 
 function NavBar() {
   return (
@@ -54,7 +56,7 @@ function NavBar() {
             to="reels"
             className=" flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
-            <img src="icons/reels-icon.svg" className="w-9" alt="reels icon" />
+            <ReelsIcon />
             <span className="hidden 1263:inline">Reels</span>
           </NavLink>
         </li>
@@ -72,7 +74,7 @@ function NavBar() {
             to="direct"
             className=" flex rounded-xl transition-colors  736:py-5 1263:items-center 1263:gap-5 1263:p-5 1263:hover:bg-gray-100"
           >
-            <img src="icons/instagram-share-icon.svg" className="w-9" alt="" />
+            <ShareIcon className="w-9" />
             <span className="hidden 1263:inline">Messages</span>
           </NavLink>
         </li>

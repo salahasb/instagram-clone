@@ -7,32 +7,40 @@ import ProtectedRoute from './features/authentication/ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import ErrorPage from './components/ErrorPage';
+import PostDetail from './features/posts/PostPage';
+import PostDetailPage from './features/posts/PostPage';
 
 // React Router
+const router = createBrowserRouter(
+  [
+    {
+      path: '/auth',
+      element: <AuthPage />,
+    },
 
-const router = createBrowserRouter([
-  {
-    path: '/auth',
-    element: <AuthPage />,
-  },
-
-  {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <AppLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: ':username', element: <ProfilePage /> },
-    ],
-  },
-  {
-    path: '/error',
-    element: <ErrorPage />,
-  },
-]);
+    {
+      path: '/',
+      element: (
+        <ProtectedRoute>
+          <AppLayout />
+        </ProtectedRoute>
+      ),
+      children: [
+        { index: true, element: <HomePage /> },
+        {
+          path: ':username',
+          element: <ProfilePage />,
+        },
+        { path: 'posts/:id', element: <PostDetailPage /> },
+      ],
+    },
+    {
+      path: '/error',
+      element: <ErrorPage />,
+    },
+  ],
+  {},
+);
 
 // initializing React Query
 const queryClient = new QueryClient({

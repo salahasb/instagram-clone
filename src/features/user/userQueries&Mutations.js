@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { LOGGED_USER, USER, USERS } from '../../utils/constants';
+import { LOGGED_USER, USER, USERS } from '../../data/constants';
 import { useParams } from 'react-router-dom';
 import {
   getUserByUsername,
   getUsers,
   updateUserFollowInfo,
-} from '../../services/userApi';
+} from '../../services/appwrite/userApi';
 import { useEffect } from 'react';
-import { client, config } from '../../services/appwrite.config';
+import { client, config } from '../../services/appwrite/appwrite.config';
 import { useLoggedInUser } from '../authentication/authQueries&Mutations';
 
 export function useUser() {
@@ -67,6 +67,7 @@ export function useMutuals(otherUser, isLoggedUser) {
   } = useQuery({
     queryFn: () => getUsers(mutuals),
     queryKey: [USERS],
+    cacheTime: 0,
     enabled: Boolean(enabled),
   });
 

@@ -5,9 +5,9 @@ import {
   login,
   logout,
   signup,
-} from '../../services/authApi';
+} from '../../services/appwrite/authApi';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGGED_USER } from '../../utils/constants';
+import { LOGGED_USER } from '../../data/constants';
 
 export function useLoggedInUser() {
   const { pathname } = useLocation();

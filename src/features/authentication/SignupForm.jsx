@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
-import { checkEmail, checkUsername } from '../../services/authApi';
+import { checkEmail, checkUsername } from '../../services/appwrite/authApi';
 import { useSignup } from './authQueries&Mutations';
 
 function SignupForm() {

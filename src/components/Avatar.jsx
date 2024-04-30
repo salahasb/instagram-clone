@@ -1,5 +1,5 @@
 function Avatar({ avatar, className }) {
-  const src = avatar || 'default-profile-picture.png';
+  const src = avatar || '/default-profile-picture.png';
   return (
     <div
       className={`flex items-center justify-center overflow-hidden rounded-full ${className}`}

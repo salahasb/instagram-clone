@@ -1,42 +1,33 @@
-import ProfileEmptyContents from './ProfileEmptyContents';
+import Spinner from '../../components/Spinner';
+import PostItem from '../posts/PostItem';
+import { useUserPosts } from '../posts/postQueries&Mutations';
+import ProfileEmptyMessage from './ProfileEmptyMessage';
 import { HiOutlineCamera } from 'react-icons/hi2';
 
 function ProfilePosts() {
-  return (
-    <div className="grow">
-      {/* <div className="mb-28 grid grid-cols-3 gap-2 *:aspect-square *:overflow-hidden [&>*_img]:h-full [&>*_img]:w-full [&>*_img]:object-cover">
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="2OrtT.jpg" alt="" />
-        </div>
-        <div className=" ">
-          <img src="instagram-logo-dark.png" alt="" />
-        </div>
-      </div> */}
+  const { isLoadingUserPosts, posts, userPostsError } = useUserPosts();
 
-      <ProfileEmptyContents
+  if (isLoadingUserPosts) return <Spinner className="  fill-black " />;
+
+  if (!posts.length)
+    return (
+      <ProfileEmptyMessage
         title="Share Photos"
         description="When you share photos, they will appear on your profile."
         Icon={HiOutlineCamera}
         resource="posts"
       />
+    );
+
+  if (userPostsError) return <p>Something Went Wrong</p>;
+
+  return (
+    <div>
+      <div className="mb-28 grid grid-cols-3 gap-[0.4rem] *:aspect-square *:overflow-hidden [&>*_img]:h-full [&>*_img]:w-full [&>*_img]:object-cover">
+        {posts.map((post) => (
+          <PostItem key={post.$id} post={post} />
+        ))}
+      </div>
     </div>
   );
 }

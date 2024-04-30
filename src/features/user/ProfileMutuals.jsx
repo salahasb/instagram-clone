@@ -3,7 +3,7 @@ import { useMutuals } from './userQueries&Mutations';
 
 function ProfileMutuals() {
   const { mutualUsers, mutualsError } = useMutuals();
-  console.log(mutualUsers);
+
   if (mutualsError) return;
 
   const first3Mutuals = mutualUsers.slice(0, 3);

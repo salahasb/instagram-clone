@@ -4,24 +4,21 @@ import NotFound from '../components/NotFound';
 import { useLogout } from '../features/authentication/authQueries&Mutations';
 import ProfileSummary from '../features/user/ProfileSummary';
 import ProfileContents from '../features/user/ProfileContents';
-import ProfileHeader from '../features/user/ProfileHeader';
 import ProfileInfoBox from '../features/user/ProfileInfoBox';
 import { useMutuals, useUser } from '../features/user/userQueries&Mutations';
 import useIsLoggedUser from '../hooks/useIsLoggedUser';
+import MainContentContainer from '../components/MainContentContainer';
+import { BsGearWide } from 'react-icons/bs';
+import PageMobileHeader from '../components/PageMobileHeader';
 
 function ProfilePage() {
-  const { isLoading: isLoadingUser, error, user: otherUser } = useUser();
-
+  const { isLoading: isLoadingUser, error, user } = useUser();
+  // console.log(1);
   const isLoggedUser = useIsLoggedUser();
 
-  const { isLoadingMutuals } = useMutuals(otherUser, isLoggedUser);
+  const { isLoadingMutuals } = useMutuals(user, isLoggedUser);
 
   const { logoutUser } = useLogout();
-
-  // if (isLoggedUser) {
-  //   if (isLoadingUser) return <p className="text-5xl">Loading....</p>;
-  // } else if (isLoadingUser || isLoadingMutuals)
-  //   return <p className="text-5xl">Loading....</p>;
 
   if (error) return <NotFound />;
 
@@ -29,8 +26,12 @@ function ProfilePage() {
     return <p className="text-5xl">Loading....</p>;
 
   return (
-    <div className="mx-auto flex h-full max-w-[92rem] flex-col">
-      <ProfileHeader />
+    // <div className="mx-auto flex h-full max-w-[92rem] flex-col">
+    <MainContentContainer>
+      {/* <ProfileHeader /> */}
+      <PageMobileHeader pageTitle={user.username}>
+        <button>{isLoggedUser && <BsGearWide size={24} />}</button>
+      </PageMobileHeader>
 
       <ProfileInfoBox />
 
@@ -45,7 +46,8 @@ function ProfilePage() {
       <ProfileContents />
 
       <Footer className="hidden 736:flex" />
-    </div>
+    </MainContentContainer>
+    //</div>
   );
 }
 

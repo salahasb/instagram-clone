@@ -43,8 +43,11 @@ function LoginForm({ mutation: { isLoading, mutate: login } }) {
         className="mt-4 disabled:bg-brand-400"
         disabled={!isValid || isLoading}
       >
-        {isLoading ? <Spinner /> : 'Log in'}
-        {/* <Spinner /> */}
+        {isLoading ? (
+          <Spinner size="small" className={'fill-white'} />
+        ) : (
+          'Log in'
+        )}
       </Button>
     </Form>
   );
