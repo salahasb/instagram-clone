@@ -1,5 +1,5 @@
 import { HiDotsHorizontal } from 'react-icons/hi';
-import Avatar from '../../components/Avatar';
+import Avatar from '../../../components/Avatar';
 
 function PostHeader({ post }) {
   return (

@@ -1,7 +1,7 @@
-import Spinner from '../../components/Spinner';
-import PostItem from '../posts/PostItem';
-import { useUserPosts } from '../posts/postQueries&Mutations';
-import ProfileEmptyMessage from './ProfileEmptyMessage';
+import Spinner from '../../../../components/Spinner';
+import PostItem from './ProfilePostItem';
+import { useUserPosts } from '../../postQueries&Mutations';
+import ProfileEmptyMessage from '../../../user/ProfileEmptyMessage';
 import { HiOutlineCamera } from 'react-icons/hi2';
 
 function ProfilePosts() {

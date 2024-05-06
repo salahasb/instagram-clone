@@ -1,30 +1,37 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import ReelsIcon from '../../components/ReelsIcon';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import ReelsIcon from '../../../../components/ReelsIcon';
 import { CiImageOn } from 'react-icons/ci';
 import { TbBoxMultiple } from 'react-icons/tb';
-import PostPreviewOverlay from './PostPreviewOverlay';
-import PostModal from './PostModal';
-import tailwindConfig from '../../../tailwind.config';
+import PostPreviewOverlay from './PostItemOverlay';
+import PostModal from '../PostModal';
+import tailwindConfig from '../../../../../tailwind.config';
 
 function PostItem({ post }) {
   const [overlay, setOverlay] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const navigate = useNavigate();
 
-  // navigate("",{})
-
+  // set a url to the post modal without truly navigating to that route (shallow route)
   function handlePostModal() {
+    // set "index" search param if the post is a slider
+    const postRoute =
+      // post.contentType === 'mix'
+      //   ? `/posts/${post.$id}/?index=1`
+      //   :
+      `/posts/${post.$id}`;
+
     // navigate to the post route directly if the viewport is in mobile
     const desktopScreen =
       tailwindConfig.theme.screens['736'].match(/\d+/g)[0] * 16;
 
     const viewportWidth = window.innerWidth;
 
-    if (viewportWidth <= desktopScreen) return navigate(`/posts/${post.$id}`);
+    if (viewportWidth <= desktopScreen) return navigate(postRoute);
 
-    // otherwise show post in a modal
+    // otherwise show post in a modal, and change the url to the post's route (shallow route)
     setShowPostModal(true);
+    // window.history.pushState(null, null, postRoute);
   }
 
   return (

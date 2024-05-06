@@ -2,7 +2,7 @@ import PostCommentItem from './PostCommentItem';
 
 function PostComments({ post }) {
   return (
-    <div className="no-scrollbar hidden basis-full overflow-y-scroll 736:block">
+    <div className="no-scrollbar hidden grow basis-0 overflow-y-scroll 736:block">
       <div>
         <PostCommentItem
           isPostCaption={true}

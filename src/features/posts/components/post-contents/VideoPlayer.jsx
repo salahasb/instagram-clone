@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { IoMdVolumeOff } from 'react-icons/io';
 import { IoMdVolumeHigh } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideoSoundState, muteVideo, unmuteVideo } from './postSlice';
+import { getVideoSoundState, muteVideo, unmuteVideo } from '../../postSlice';
 
 function VideoPlayer({ src, autoplay = true }) {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ function VideoPlayer({ src, autoplay = true }) {
         // poster={}
         muted={isMuted}
         ref={videoPlayer}
-        className="size-full object-cover object-center"
         onClick={handleVideoPlayer}
       >
         <source type="video/mp4" src={src} />

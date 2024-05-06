@@ -44,6 +44,10 @@
     background-color: var(--color-grey-300);
     right: 0;
   }
+
+  .contain-media {
+    @apply size-full object-contain object-center;
+  }
 }
 
 @layer utilities {

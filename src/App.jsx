@@ -7,8 +7,8 @@ import ProtectedRoute from './features/authentication/ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 import ErrorPage from './components/ErrorPage';
-import PostDetail from './features/posts/PostPage';
-import PostDetailPage from './features/posts/PostPage';
+import PostDetail from './features/posts/components/PostPage';
+import PostDetailPage from './features/posts/components/PostPage';
 
 // React Router
 const router = createBrowserRouter(

@@ -1,5 +1,5 @@
 import { BiHeart } from 'react-icons/bi';
-import Avatar from '../../components/Avatar';
+import Avatar from '../../../components/Avatar';
 import { Link } from 'react-router-dom';
 
 function PostCommentItem({ isPostCaption, mobile, content, className, post }) {

@@ -16,7 +16,7 @@ function ProtectedRoute({ children }) {
       return navigate('/auth');
     }
 
-    navigate('/error');
+    navigate(0);
   }, [error, remove, navigate]);
 
   if (isLoading) return <LoadingPage />;

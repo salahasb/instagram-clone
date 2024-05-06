@@ -1,7 +1,7 @@
 import { BiHeart, BiSave } from 'react-icons/bi';
 import { FaRegComment } from 'react-icons/fa';
 import { LuBookmark } from 'react-icons/lu';
-import ShareIcon from '../../components/ShareIcon';
+import ShareIcon from '../../../components/ShareIcon';
 import PostDate from './PostDate';
 
 function PostActions() {

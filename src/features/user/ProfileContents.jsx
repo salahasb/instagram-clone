@@ -1,5 +1,5 @@
 import ProfileContentHeader from './ProfileContentHeader';
-import ProfilePosts from './ProfilePosts';
+import ProfilePosts from '../posts/components/profile-posts/ProfilePosts';
 
 function ProfileContents() {
   return (
